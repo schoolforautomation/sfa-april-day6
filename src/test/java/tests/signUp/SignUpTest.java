@@ -4,16 +4,18 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.BaseTest;
+import exceptions.TextNotFoundException;
 import modals.EnrollMeModal;
 import model.SignUp;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.SignUpPage;
+import tables.AvailableCoursesTable;
 
 public class SignUpTest extends BaseTest {
 
     @Test
-    public void signUpTest() {
+    public void signUpTest() throws TextNotFoundException, InterruptedException {
         logger.info("Step 1: Go to Login Page");
         getWebDriver().get("http://school-for-automation.tech");
 
@@ -38,7 +40,7 @@ public class SignUpTest extends BaseTest {
         verifyForm(enrollMeModal);
     }
 
-    private void verifyForm(EnrollMeModal enrollMeModal) {
+    private void verifyForm(EnrollMeModal enrollMeModal) throws InterruptedException, TextNotFoundException {
         Assert.assertEquals(enrollMeModal.getCourseName(), "Testing with Kafka");
         Assert.assertEquals(enrollMeModal.getLevel(), "Beginner");
         Assert.assertEquals(enrollMeModal.getStudentName(), "Raul Gonzalez");
